@@ -25,8 +25,14 @@ const config={
       {
       exclude: /node_modules/,
       test: /\.(js|jsx)$/,
-      loaders:  ['react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react'],
+      loaders:  ['react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react,plugins[]=transform-decorators-legacy'],
     },
+    {
+        test: /\.css$/,
+        loader:ExtractTextPlugin.extract('style-loader','css-loader'),
+    },
+    {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=fonts/[name].[ext]&mimetype=application/octet-stream'},
+
   ],
   },
   devServer: {
@@ -44,6 +50,10 @@ const config={
 }),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
+  new ExtractTextPlugin('[name].css', {
+
+      allChunks: true,
+    }),
 
  ],
 };
