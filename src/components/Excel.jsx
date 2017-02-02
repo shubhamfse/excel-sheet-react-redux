@@ -11,8 +11,13 @@ require('../assets/style.css');
 class Excel extends React.Component{
   constructor(){
     super();
+    this.state={
+      activeCell : '',
+    };
   }
-
+  updateActiveCell = (value) => {
+   this.setState({ activeCell : value});
+   }
    addRow(){
       this.props.dispatch(addRow());
     }
@@ -30,7 +35,7 @@ class Excel extends React.Component{
             tableHeads.push(<ColumnHeader key={index} theaderdata={cell} />);
         });
   		this.props.totalRows.map(function(row, index) {
-            tableRows.push(<CellRow key={index + 1}  trowdata={row} />);
+            tableRows.push(<CellRow key={index + 1}  trowdata={row} updateActiveCell={that.updateActiveCell.bind(that)}/>);
         });
      return(
        <div className="excel-container">

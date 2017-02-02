@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b1448bfec45019afcd36"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f3a022facb9a780e5ef5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -43261,17 +43261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function Excel() {
 	    _classCallCheck(this, Excel);
 
-	    var _this = _possibleConstructorReturn(this, (Excel.__proto__ || Object.getPrototypeOf(Excel)).call(this));
-
-	    _this.state = {
-	      isMouseDown: false,
-	      activeCell: '',
-	      highlightedCells: [],
-	      copyAxis: {
-	        x: '', y: '', d: ''
-	      }
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (Excel.__proto__ || Object.getPrototypeOf(Excel)).call(this));
 	  }
 
 	  _createClass(Excel, [{
@@ -43287,78 +43277,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var tRowsElement = [],
-	          theadElements = [];
+	      var tableRows = [],
+	          tableHeads = [];
 	      var that = this;
 	      console.log(this.props.cellTitles);
 	      console.log(this.props.totalRows);
 	      this.props.cellTitles.map(function (cell, index) {
-	        theadElements.push(_react2.default.createElement(_ColumnHeader2.default, { key: index, thdata: cell }));
+	        tableHeads.push(_react2.default.createElement(_ColumnHeader2.default, { key: index, theaderdata: cell }));
 	      });
 	      this.props.totalRows.map(function (row, index) {
-	        tRowsElement.push(_react2.default.createElement(_CellRow2.default, { key: index + 1, trdata: row, isMouseDown: that.state.isMouseDown, copyAxis: that.state.copyAxis, highlightedCells: that.state.highlightedCells, activeCell: that.state.activeCell }));
+	        tableRows.push(_react2.default.createElement(_CellRow2.default, { key: index + 1, trowdata: row }));
 	      });
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "container" },
+	        { className: "excel-container" },
 	        _react2.default.createElement(
 	          "section",
-	          { className: "sec-excel" },
+	          { className: "sec-excel col-md-12" },
 	          _react2.default.createElement(
 	            "div",
-	            { className: "excel-box" },
+	            { className: "col-md-12 excel-tools" },
 	            _react2.default.createElement(
-	              "div",
-	              { className: "excel-title" },
-	              _react2.default.createElement(
-	                "h3",
-	                { className: "title" },
-	                "Excel Sheet"
-	              )
+	              "button",
+	              { id: "add-row", onClick: this.addRow.bind(this) },
+	              _react2.default.createElement("i", { className: "fa fa-arrows-v", "aria-hidden": "true" })
 	            ),
 	            _react2.default.createElement(
+	              "span",
+	              null,
+	              " | "
+	            ),
+	            _react2.default.createElement(
+	              "button",
+	              { id: "add-column", onClick: this.addColumn.bind(this) },
+	              _react2.default.createElement("i", { className: "fa fa-arrows-h", "aria-hidden": "true" })
+	            )
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "excel-table-wrapper col-md-12" },
+	            _react2.default.createElement(
 	              "div",
-	              { className: "excel-content" },
+	              { className: "col-md-12 excel-wrapper" },
 	              _react2.default.createElement(
-	                "div",
-	                { className: "btn-box" },
+	                "table",
+	                { id: "excel-table" },
 	                _react2.default.createElement(
-	                  "button",
-	                  { id: "btn-add-row", onClick: this.addRow.bind(this) },
-	                  "Add Row"
-	                ),
-	                _react2.default.createElement(
-	                  "span",
+	                  "thead",
 	                  null,
-	                  " | "
+	                  _react2.default.createElement(
+	                    "tr",
+	                    null,
+	                    tableHeads
+	                  )
 	                ),
 	                _react2.default.createElement(
-	                  "button",
-	                  { id: "btn-add-column", onClick: this.addColumn.bind(this) },
-	                  "Add Column"
-	                )
-	              ),
-	              _react2.default.createElement("br", null),
-	              _react2.default.createElement(
-	                "div",
-	                { className: "excel-wrapper" },
-	                _react2.default.createElement(
-	                  "table",
-	                  { id: "excel-table" },
-	                  _react2.default.createElement(
-	                    "thead",
-	                    null,
-	                    _react2.default.createElement(
-	                      "tr",
-	                      null,
-	                      theadElements
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    "tbody",
-	                    null,
-	                    tRowsElement
-	                  )
+	                  "tbody",
+	                  null,
+	                  tableRows
 	                )
 	              )
 	            )
@@ -43453,7 +43430,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -43476,83 +43453,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Cell = function (_React$Component) {
-		_inherits(Cell, _React$Component);
+	  _inherits(Cell, _React$Component);
 
-		function Cell() {
-			var _ref;
+	  function Cell() {
+	    var _ref;
 
-			var _temp, _this, _ret;
+	    var _temp, _this, _ret;
 
-			_classCallCheck(this, Cell);
+	    _classCallCheck(this, Cell);
 
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cell.__proto__ || Object.getPrototypeOf(Cell)).call.apply(_ref, [this].concat(args))), _this), _this.handleKeyEvent = function (evt) {
-				if (evt.ctrlKey && (evt.which === 66 || evt.which === 73 || evt.which === 85 || evt.which === 86)) {
-					var elm = evt.target;
-					evt.preventDefault();
-					switch (evt.which) {
-						case 66:
-							{
-								elm.style.fontWeight = 'bold';
-								break;
-							}
-						case 73:
-							{
-								elm.style.fontFamily = 'italic';
-								break;
-							}
-						case 85:
-							{
-								elm.style.textDecoration = 'underline';
-							}
-						case 86:
-							{
-								if (elm) {
-									_this.props.pasteCell(_this.props.celldata);
-								}
-								break;
-							}
-					}
-				}
-			}, _temp), _possibleConstructorReturn(_this, _ret);
-		}
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cell.__proto__ || Object.getPrototypeOf(Cell)).call.apply(_ref, [this].concat(args))), _this), _this.handleFocus = function (e) {
+	      e.target.focus();
+	      _this.props.updateActiveCell(_this.props.celldata);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 
-		_createClass(Cell, [{
-			key: "render",
-			value: function render() {
-				var _this2 = this;
+	  _createClass(Cell, [{
+	    key: "render",
+	    value: function render() {
+	      var cell = JSON.stringify(this.props.celldata);
+	      return _react2.default.createElement(
+	        "td",
+	        { key: this.key, "data-cell": cell, "data-index": this.props.celldata.y },
+	        " ",
+	        _react2.default.createElement(
+	          "div",
+	          { className: "content-box", contentEditable: this.props.edit, onFocus: this.handleFocus.bind(this) },
+	          this.props.celldata.value
+	        )
+	      );
+	    }
+	  }]);
 
-				var cell = JSON.stringify(this.props.celldata);
-				var resizerClass = 'hide';
-				var tdClass = '';
-				var resizableClass = '';
-				if (this.props.activeCell && this.props.activeCell.x === this.props.celldata.x && this.props.activeCell.y === this.props.celldata.y) {
-					resizerClass = 'resizer';
-					tdClass = 'resizable';
-				}
-				this.props.highlightedCells.map(function (hcell) {
-					if (hcell.y === _this2.props.celldata.y && hcell.x === _this2.props.celldata.x) {
-						tdClass += ' highlighted';
-					}
-				});
-				return _react2.default.createElement(
-					"td",
-					{ key: this.key, "data-cell": cell, "data-index": this.props.celldata.y, className: tdClass },
-					" ",
-					_react2.default.createElement(
-						"div",
-						{ className: "content-box", contentEditable: this.props.edit },
-						this.props.celldata.value
-					),
-					_react2.default.createElement("div", { className: resizerClass })
-				);
-			}
-		}]);
-
-		return Cell;
+	  return Cell;
 	}(_react2.default.Component);
 
 	exports.default = Cell;
@@ -43608,20 +43545,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 
 			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CellRow.__proto__ || Object.getPrototypeOf(CellRow)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
-				var tCells = [];
-				var styleClass = '';
-				tCells.push(_react2.default.createElement(_RowHeader2.default, { key: 0, index: _this.props.trdata.index, updateActiveCell: _this.props.updateActiveCell }));
+				var tableCells = [];
+
+				tableCells.push(_react2.default.createElement(_RowHeader2.default, { key: 0, index: _this.props.trowdata.index, updateActiveCell: _this.props.updateActiveCell }));
 				var that = _this;
-				_this.props.trdata.data.map(function (tcell, index) {
-					tCells.push(_react2.default.createElement(_Cell2.default, { edit: true, key: index + 1, updateMouseDown: that.props.updateMouseDown, updateActiveCell: that.props.updateActiveCell, updateCopyAxis: that.props.updateCopyAxis, updateHighlightedCells: that.props.updateHighlightedCells, updateCell: that.props.updateCell, pasteCell: that.props.pasteCell, celldata: tcell, isMouseDown: that.props.isMouseDown, copyAxis: that.props.copyAxis, highlightedCells: that.props.highlightedCells, activeCell: that.props.activeCell }));
+				_this.props.trowdata.data.map(function (tcell, index) {
+					tableCells.push(_react2.default.createElement(_Cell2.default, { edit: true, key: index + 1, celldata: tcell, updateActiveCell: that.props.updateActiveCell }));
 				});
-				if (_this.props.activeCell && _this.props.activeCell.x === _this.props.trdata.index) {
-					styleClass = 'row-selected';
-				}
+
 				return _react2.default.createElement(
 					"tr",
-					{ className: styleClass, key: _this.key, "data-index": _this.props.trdata.index },
-					tCells
+					{ key: _this.key, "data-index": _this.props.trowdata.index },
+					tableCells
 				);
 			}, _temp), _possibleConstructorReturn(_this, _ret);
 		}
@@ -43676,8 +43611,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CellHeader.__proto__ || Object.getPrototypeOf(CellHeader)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
 	            return _react2.default.createElement(
 	                "th",
-	                { key: _this.key },
-	                _this.props.thdata.value
+	                { className: "rowcolumnheaders", key: _this.key },
+	                _this.props.theaderdata.value
 	            );
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
@@ -43699,7 +43634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.default = undefined;
 
@@ -43716,32 +43651,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var RowHeader = function (_React$Component) {
-	  _inherits(RowHeader, _React$Component);
+	    _inherits(RowHeader, _React$Component);
 
-	  function RowHeader() {
-	    var _ref;
+	    function RowHeader() {
+	        var _ref;
 
-	    var _temp, _this, _ret;
+	        var _temp, _this, _ret;
 
-	    _classCallCheck(this, RowHeader);
+	        _classCallCheck(this, RowHeader);
 
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RowHeader.__proto__ || Object.getPrototypeOf(RowHeader)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnClick = function (evt) {
+	            _this.props.updateActiveCell({ x: _this.props.index, y: '', value: '' });
+	        }, _this.render = function () {
+	            var rowNumber = _this.props.index + 1;
+	            return _react2.default.createElement(
+	                'td',
+	                { className: 'rowcolumnheaders', onClick: _this.handleOnClick.bind(_this), key: _this.key, 'data-index': _this.props.index },
+	                rowNumber
+	            );
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RowHeader.__proto__ || Object.getPrototypeOf(RowHeader)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnClick = function (evt) {
-	      _this.props.updateActiveCell({ x: _this.props.index, y: '', value: '' });
-	    }, _this.render = function () {
-	      var rowNumber = _this.props.index + 1;
-	      return _react2.default.createElement(
-	        'td',
-	        { key: _this.key, onClick: _this.handleOnClick.bind(_this), 'data-index': _this.props.index },
-	        rowNumber
-	      );
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-
-	  return RowHeader;
+	    return RowHeader;
 	}(_react2.default.Component);
 
 	exports.default = RowHeader;
@@ -43850,7 +43785,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var initialState = window.__PRELOADED_STATE__ || {};
 
-	var store = (0, _configureStore2.default)();
+	var store = (0, _configureStore2.default)(initialState);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -43870,7 +43805,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -43878,40 +43813,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var initialState = {
-		isMouseDown: false,
-		copiedCells: [],
-		cellIndex: 3,
-		cellCount: 3,
-		rowIndex: 3,
-		cellPrefix: '',
-		cellTitles: [{ index: -1, value: 'No.' }, { index: 0, value: 'A' }, { index: 1, value: 'B' }, { index: 2, value: 'C' }],
-		totalRows: [{ index: 0, data: [{ x: 0, y: 0, value: 1 }, { x: 0, y: 1, value: 2 }, { x: 0, y: 2, value: 3 }] }, { index: 1, data: [{ x: 1, y: 0, value: 4 }, { x: 1, y: 1, value: 5 }, { x: 1, y: 2, value: 6 }] }, { index: 2, data: [{ x: 2, y: 0, value: 7 }, { x: 2, y: 1, value: 8 }, { x: 2, y: 2, value: 9 }] }]
+	  cellIndex: 9,
+	  cellCount: 9,
+	  rowIndex: 5,
+	  cellPrefix: '',
+	  cellTitles: [{ index: -1, value: 'No.' }, { index: 0, value: 'A' }, { index: 1, value: 'B' }, { index: 2, value: 'C' }, { index: 3, value: 'D' }, { index: 4, value: 'E' }, { index: 5, value: 'F' }, { index: 6, value: 'G' }, { index: 7, value: 'H' }, { index: 7, value: 'I' }],
+	  totalRows: [{ index: 0, data: [{ x: 0, y: 0, value: '' }, { x: 0, y: 1, value: '' }, { x: 0, y: 2, value: '' }, { x: 0, y: 3, value: '' }, { x: 0, y: 4, value: '' }, { x: 0, y: 5, value: '' }, { x: 0, y: 6, value: '' }, { x: 0, y: 7, value: '' }, { x: 0, y: 8, value: '' }] }, { index: 1, data: [{ x: 1, y: 0, value: '' }, { x: 1, y: 1, value: '' }, { x: 1, y: 2, value: '' }, { x: 1, y: 3, value: '' }, { x: 1, y: 4, value: '' }, { x: 1, y: 5, value: '' }, { x: 1, y: 6, value: '' }, { x: 1, y: 7, value: '' }, { x: 1, y: 8, value: '' }] }, { index: 2, data: [{ x: 2, y: 0, value: '' }, { x: 2, y: 1, value: '' }, { x: 2, y: 2, value: '' }, { x: 2, y: 3, value: '' }, { x: 2, y: 4, value: '' }, { x: 2, y: 5, value: '' }, { x: 2, y: 6, value: '' }, { x: 2, y: 7, value: '' }, { x: 2, y: 8, value: '' }] }, { index: 3, data: [{ x: 3, y: 0, value: '' }, { x: 3, y: 1, value: '' }, { x: 3, y: 2, value: '' }, { x: 3, y: 3, value: '' }, { x: 3, y: 4, value: '' }, { x: 3, y: 5, value: '' }, { x: 3, y: 6, value: '' }, { x: 3, y: 7, value: '' }, { x: 3, y: 8, value: '' }] }, { index: 4, data: [{ x: 4, y: 0, value: '' }, { x: 4, y: 1, value: '' }, { x: 4, y: 2, value: '' }, { x: 4, y: 3, value: '' }, { x: 4, y: 4, value: '' }, { x: 4, y: 5, value: '' }, { x: 4, y: 6, value: '' }, { x: 4, y: 7, value: '' }, { x: 4, y: 8, value: '' }] }]
 	};
 
 	var Storage = function () {
-		function Storage() {
-			_classCallCheck(this, Storage);
-		}
+	  function Storage() {
+	    _classCallCheck(this, Storage);
+	  }
 
-		_createClass(Storage, [{
-			key: 'getState',
-			value: function getState() {
-				if (typeof localStorage !== 'undefined') {
-					var state = JSON.parse(localStorage.getItem('excelstate'));
-					return state === null ? initialState : state;
-				}
-				return initialState;
-			}
-		}, {
-			key: 'setState',
-			value: function setState(state) {
-				if (typeof localStorage !== 'undefined') {
-					localStorage.setItem('excelstate', JSON.stringify(state));
-				}
-			}
-		}]);
+	  _createClass(Storage, [{
+	    key: 'getState',
+	    value: function getState() {
 
-		return Storage;
+	      return initialState;
+	    }
+	  }]);
+
+	  return Storage;
 	}();
 
 	var storage = new Storage();
@@ -43949,17 +43872,15 @@ return /******/ (function(modules) { // webpackBootstrap
 		var action = arguments[1];
 
 
-		console.log(state);
-		console.log(action.type);
 		switch (action.type) {
 
 			case "ADD_ROW":
 				{
 					var _ret = function () {
-						var rowIndex = state.spreadsheetReducer.rowIndex;
-						console.log(rowIndex);
+						var rowIndex = state.rowIndex;
+
 						var newRow = { index: rowIndex, data: [] };
-						for (var i = 0; i < state.spreadsheetReducer.cellCount; i++) {
+						for (var i = 0; i < state.cellCount; i++) {
 							newRow.data.push({
 								x: rowIndex,
 								y: i,
@@ -43967,14 +43888,13 @@ return /******/ (function(modules) { // webpackBootstrap
 							});
 						}
 						var totalRows = [];
-						state.spreadsheetReducer.totalRows.map(function (row) {
+						state.totalRows.map(function (row) {
 							totalRows.push(row);
 						});
-						console.log(totalRows);
+
 						totalRows.push(newRow);
 						rowIndex = rowIndex + 1;
-						console.log(rowIndex);
-						console.log(totalRows);
+
 						var newState = _extends({}, state, { totalRows: totalRows, rowIndex: rowIndex });
 
 						return {
@@ -43988,16 +43908,16 @@ return /******/ (function(modules) { // webpackBootstrap
 				{
 					var _ret2 = function () {
 						var cellTitles = [];
-						var cellPrefix = state.spreadsheetReducer.cellPrefix;
-						var cellCount = state.spreadsheetReducer.cellCount;
-						var cellIndex = state.spreadsheetReducer.cellIndex;
-						state.spreadsheetReducer.cellTitles.map(function (cellTitle, index) {
+						var cellPrefix = state.cellPrefix;
+						var cellCount = state.cellCount;
+						var cellIndex = state.cellIndex;
+						state.cellTitles.map(function (cellTitle, index) {
 							cellTitles.push(cellTitle);
 						});
 						cellCount = cellCount + 1;
 						var totalRows = [];
 						var newCellIndex = void 0;
-						state.spreadsheetReducer.totalRows.map(function (row, index) {
+						state.totalRows.map(function (row, index) {
 							var lastCell = row.data[row.data.length - 1];
 							newCellIndex = lastCell ? lastCell.y + 1 : 0;
 							row.data.push({
@@ -44091,8 +44011,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function configureStore() {
+	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	  var store = (0, _redux.createStore)(_reducer2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
+
+	  var logger = (0, _reduxLogger2.default)({
+	    level: 'info',
+	    collapsed: true
+	  });
+
+	  var enhancer = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, logger));
+
+	  var store = (0, _redux.createStore)(_reducer2.default, initialState, enhancer);
 
 	  if (true) {
 	    module.hot.accept(function () {

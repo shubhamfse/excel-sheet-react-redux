@@ -25,22 +25,27 @@ background-color:#3572b0;
   letter-spacing:4px;
   font-weight:700;
   color:#FFFFFF;
+  text-transform:uppercase;
 }
-
-section {
-	padding-top:20px;
+section{
+  padding:0px;
+  margin:0px;
 }
-
-section .container {
-	padding: 10px;
+.sec-excel{
+  padding-left:0px !important;
+  padding-right:0px !important;
 }
-
+.excel-tools{
+  padding:20px;
+  background-color:#eee;
+  text-align:center;
+}
 .excel-wrapper {
 	overflow: auto;
 	max-height: 500px;
 }
 
-.excel-box {
+.excel-table-wrapper {
 	padding: 0;
 	clear: both;
 	float: left;
@@ -48,7 +53,6 @@ section .container {
 	min-height: 100px;
 	margin-bottom: 25px;
 	margin-top: 0;
-	padding: 0;
 	background-color: #fff;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -57,30 +61,14 @@ section .container {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.excel-title {
-	padding: 0 17px;
-	margin-bottom: 0;
-	height: 50px;
-	line-height: 50px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-	border-bottom: 1px solid #f4f4f4;
+
+.rowcolumnheaders{
+  padding:5px;
+  font-size:15px;
+  font-family: 'Quicksand', sans-serif;
+  text-align:center;
 }
 
-.excel-title h3 {
-	display: inline-block;
-	margin: 0;
-	font-size: 16px;
-	font-weight: 600;
-	cursor: default;
-	color: #4e5e6a;
-}
-
-.excel-content {
-	padding: 15px;
-}
 
 table {
 	width: 100%;
@@ -100,11 +88,7 @@ td:first-child {
 		padding: 5px;
 	font-weight: bold;
 }
-td .content-box{
-	outline:none;
-	padding:5px;
-	height: inherit;
-}
+
 th {
 	border: 1px solid #ccc;
 	border-bottom: 1px solid black;
@@ -116,27 +100,4 @@ th {
 
 th:first-child {
 	width: 20px;
-}
-
-.row-selected {
-	background-color: #DBECFA;
-}
-
-.resizable {
-	position: relative;
-	border: 2px solid #3572b0;
-}
-
-.resizer {
-	width: 4px;
-	height: 4px;
-	background:#685fcc;
-	position: absolute;
-	right: -2px;
-	bottom: -2px;
-	cursor: se-resize;
-}
-
-td.highlighted {
-	background-color: #999;
 }
